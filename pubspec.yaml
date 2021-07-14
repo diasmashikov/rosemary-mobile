@@ -1,0 +1,42 @@
+name: rosemary
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/header.jpg
+    - assets/goods_images/product1.jpg
+    - assets/goods_images/product2.jpg
+    - assets/goods_images/product3.jpg
+    - assets/goods_images/product4.jpg
+    - assets/goods_images/product5.jpg
+    - assets/goods_images/product6.jpg
+    - assets/goods_images/product7.jpg
+    - assets/goods_images/product8.jpg
+
+  fonts:
+    - family: Merriweather-Regular
+      fonts:
+        - asset: fonts/Merriweather-Regular.ttf
+    - family: Merriweather-Bold
+      fonts:
+        - asset: fonts/Merriweather-Bold.ttf
+    - family: SolomonSans-SemiBold
+      fonts:
+        - asset: fonts/Solomon Sans SemiBold.otf
