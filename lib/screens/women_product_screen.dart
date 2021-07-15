@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rosemary/screens/shopping_cart_screen.dart';
 import '../navigation_drawer_widget.dart';
 
 class WomenProductScreen extends StatefulWidget {
@@ -34,7 +35,9 @@ class _WomenProductState extends State<WomenProductScreen> {
             IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Color.fromRGBO(58, 67, 59, 1)),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ShoppingCartScreen(),
+              )),
             )
           ],
         ),
@@ -81,7 +84,6 @@ class _WomenProductState extends State<WomenProductScreen> {
             Divider(color: Color.fromRGBO(58, 67, 59, 1)),
             _buildExpansionTile(title: "Модель на фото", description: "Рост модели: 180 см\n\nВес модели: 78 кг\n\nРазмер на модели: M"),
             Divider(color: Color.fromRGBO(58, 67, 59, 1)),
-
             _buildExpansionTile(title: "Материал", description: "5% хлопок\n\n95% эластан"),
 
          
@@ -194,9 +196,7 @@ class _WomenProductState extends State<WomenProductScreen> {
           style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'SolomonSans-SemiBold')),
-      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => WomenProductScreen(),
-      )),
+      onPressed: () {},
       style: OutlinedButton.styleFrom(
         side: BorderSide(width: 1.0, color: Color.fromRGBO(58, 67, 59, 1)),
       ),
@@ -211,9 +211,7 @@ class _WomenProductState extends State<WomenProductScreen> {
             style: TextStyle(
                 color: Color.fromRGBO(58, 67, 59, 1),
                 fontFamily: 'SolomonSans-SemiBold')),
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => WomenProductScreen(),
-        )),
+        onPressed: () {},
         style: OutlinedButton.styleFrom(
           side: BorderSide(width: 1.0, color: Color.fromRGBO(58, 67, 59, 1)),
         ),
