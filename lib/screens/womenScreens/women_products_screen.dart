@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rosemary/screens/shopping_cart_screen.dart';
-import 'package:rosemary/screens/women_product_screen.dart';
-import '../navigation_drawer_widget.dart';
+import 'package:rosemary/screens/womenScreens/women_product_screen.dart';
+import '../../navigation_drawer_widget.dart';
 
 class WomenProductsScreen extends StatefulWidget {
   @override
@@ -41,6 +41,7 @@ class _WomenProductsState extends State<WomenProductsScreen> {
           ],
         ),
         body: GridView.count(
+          shrinkWrap: true,
           padding: EdgeInsets.symmetric(vertical: 15),
           mainAxisSpacing: 120,
           crossAxisCount: 2,
@@ -83,12 +84,9 @@ class _WomenProductsState extends State<WomenProductsScreen> {
                   Card(
                     color: Colors.transparent,
                     elevation: 5,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.0),
-                      child: Image.asset(imagePath,
+                    child: Image.asset(imagePath,
                           width: 170, height: height, fit: BoxFit.cover),
                     ),
-                  ),
                   Positioned(
                     right: 0,
                     bottom: 0,

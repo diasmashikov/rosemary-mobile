@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rosemary/screens/shopping_cart_screen.dart';
-import 'package:rosemary/screens/women_products_screen.dart';
+import 'package:rosemary/screens/womenScreens/women_products_screen.dart';
 
-import '../navigation_drawer_widget.dart';
+import '../../navigation_drawer_widget.dart';
 
 class WomenScreen extends StatelessWidget {
   // for ios
@@ -110,9 +110,7 @@ class WomenScreen extends StatelessWidget {
             alignment: Alignment.center,
             height: height,
             width: width,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Image.asset(
+            child: Image.asset(
                 imagePath,
                 height: height,
                 width: width,
@@ -120,7 +118,6 @@ class WomenScreen extends StatelessWidget {
                 color: Color.fromRGBO(0, 0, 0, 0.4),
                 colorBlendMode: BlendMode.darken,
               ),
-            ),
           ),
           Center(
               child: Text(clothTypeTitle,

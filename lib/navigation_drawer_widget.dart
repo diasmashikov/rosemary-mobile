@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rosemary/screens/contacts_screen.dart';
+import 'package:rosemary/screens/frequent_questions_screen.dart';
 import 'package:rosemary/screens/main_screen.dart';
-import 'package:rosemary/screens/women_screen.dart';
+import 'package:rosemary/screens/promotions_screen.dart';
+import 'package:rosemary/screens/user_screen.dart';
+import 'package:rosemary/screens/womenScreens/women_screen.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -42,13 +46,11 @@ class NavigationDrawerWidget extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              buildMenuItem(text: 'Подарки', icon: Icons.card_giftcard_rounded),
-              const SizedBox(
-                height: 12,
-              ),
               buildMenuItem(
                 text: 'Акции',
-                icon: Icons.local_offer_outlined
+                icon: Icons.local_offer_outlined,
+                onClicked: () => selectedItem(context, 3)
+
               ),
               const SizedBox(height: 12),
               Divider(color: Color.fromRGBO(58, 67, 59, 1)),
@@ -56,11 +58,14 @@ class NavigationDrawerWidget extends StatelessWidget {
               buildMenuItem(
                 text: 'Контакты',
                 icon: Icons.call_outlined,
+                onClicked: () => selectedItem(context, 4)
               ),
               const SizedBox(height: 12),
               buildMenuItem(
                 text: 'Частые вопросы',
                 icon: Icons.help_center_outlined,
+                onClicked: () => selectedItem(context, 5)
+
               ),
                 ],)
 
@@ -134,6 +139,26 @@ class NavigationDrawerWidget extends StatelessWidget {
           builder: (context) => WomenScreen(),
         ));
         break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => WomenScreen(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PromotionsScreen(),
+        ));
+        break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ContactsScreen(),
+        ));
+        break;
+      case 5:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => FrequentQuestionsScreen(),
+        ));
+        break;
     }
   }
 
@@ -141,16 +166,5 @@ class NavigationDrawerWidget extends StatelessWidget {
 
 }
 
-class UserScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text('User'),
-          centerTitle: true,
-          backgroundColor: Colors.green,
-        ),
-        drawer: NavigationDrawerWidget(),
-      );
-}
 
 

@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +22,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/header.jpg
+    - assets/visa.png
+    - assets/kaspi.png
     - assets/goods_images/product1.jpg
     - assets/goods_images/product2.jpg
     - assets/goods_images/product3.jpg

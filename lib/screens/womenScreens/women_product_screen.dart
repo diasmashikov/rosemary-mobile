@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rosemary/screens/shopping_cart_screen.dart';
-import '../navigation_drawer_widget.dart';
+import '../../navigation_drawer_widget.dart';
 
 class WomenProductScreen extends StatefulWidget {
   @override
@@ -15,7 +15,6 @@ class _WomenProductState extends State<WomenProductScreen> {
   double clothImageHeight = 380;
 
   // for android
-  //double productCellWidth = 160;
   //double productCellHeight = 240;
   @override
   Widget build(BuildContext context) => Scaffold(

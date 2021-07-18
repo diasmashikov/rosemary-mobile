@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rosemary/screens/paymentScreens/place_order_screen.dart';
 import '../navigation_drawer_widget.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
@@ -198,7 +199,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               fontSize: 16,
                 color: Color.fromRGBO(58, 67, 59, 1),
                 fontFamily: 'SolomonSans-SemiBold')),
-        onPressed: () {},
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PlaceOrderScreen(),
+              )),
         style: OutlinedButton.styleFrom(
           side: BorderSide(width: 1.0, color: Color.fromRGBO(58, 67, 59, 1)),
         ),
