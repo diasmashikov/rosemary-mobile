@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rosemary/screens/paymentScreens/place_order_screen.dart';
-import '../navigation_drawer_widget.dart';
+import '../../navigation_drawer_widget.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
   @override

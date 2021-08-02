@@ -44,7 +44,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("Моя информация: ",
+        Text("Моя информация",
             style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'Merriweather-Bold',
@@ -85,7 +85,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("Платежный адрес: ",
+        Text("Платежный адрес",
             style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'Merriweather-Bold',
@@ -147,7 +147,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("Адрес доставки: ",
+        Text("Адрес доставки",
             style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'Merriweather-Bold',
@@ -224,7 +224,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("Метод оплаты: ",
+        Text("Метод оплаты",
             style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'Merriweather-Bold',
@@ -264,7 +264,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text("Взятые товары: ",
+        Text("Взятые товары",
             style: TextStyle(
               color: Color.fromRGBO(58, 67, 59, 1),
               fontFamily: 'Merriweather-Bold',
@@ -313,7 +313,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-          Text("Цена товаров: ",
+          Text("Цена товаров",
           style: TextStyle(
             color: Color.fromRGBO(58, 67, 59, 1),
             fontFamily: 'Merriweather-Regular',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rosemary/screens/shopping_cart_screen.dart';
+import 'package:rosemary/screens/singleScreens/shopping_cart_screen.dart';
 import '../navigation_drawer_widget.dart';
+import 'singleScreens/favorites_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -21,7 +22,9 @@ class _MainScreenState extends State<MainScreen> {
             IconButton(
               icon: Icon(Icons.favorite_outline,
                   color: Color.fromRGBO(58, 67, 59, 1)),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => FavoritesScreen(),
+              )),
             ),
             IconButton(
               icon: Icon(Icons.shopping_cart_outlined,

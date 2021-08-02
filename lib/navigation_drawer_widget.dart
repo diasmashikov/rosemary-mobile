@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rosemary/screens/contacts_screen.dart';
-import 'package:rosemary/screens/frequent_questions_screen.dart';
+import 'package:rosemary/screens/singleScreens/contacts_screen.dart';
+import 'package:rosemary/screens/singleScreens/frequent_questions_screen.dart';
 import 'package:rosemary/screens/main_screen.dart';
-import 'package:rosemary/screens/promotions_screen.dart';
-import 'package:rosemary/screens/user_screen.dart';
+import 'package:rosemary/screens/singleScreens/promotions_screen.dart';
+import 'package:rosemary/screens/singleScreens/user_screen.dart';
 import 'package:rosemary/screens/womenScreens/women_screen.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -88,7 +88,8 @@ class NavigationDrawerWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                     radius: 36,
-                     backgroundImage: NetworkImage(urlImage),),
+                     //backgroundImage: NetworkImage(urlImage),
+                     ),
                     SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

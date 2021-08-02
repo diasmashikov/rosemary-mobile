@@ -3,14 +3,13 @@ import 'package:rosemary/constants/colors.dart';
 import 'package:rosemary/screens/singleScreens/shopping_cart_screen.dart';
 import 'package:rosemary/screens/womenScreens/women_product_screen.dart';
 import '../../navigation_drawer_widget.dart';
-import '../singleScreens/favorites_screen.dart';
 
-class WomenProductsScreen extends StatefulWidget {
+class FavoritesScreen extends StatefulWidget {
   @override
-  _WomenProductsState createState() => _WomenProductsState();
+  _FavoritesState createState() => _FavoritesState();
 }
 
-class _WomenProductsState extends State<WomenProductsScreen> {
+class _FavoritesState extends State<FavoritesScreen> {
   // for ios
   double productCellWidth = 190;
   double productCellHeight = 240;
@@ -23,7 +22,7 @@ class _WomenProductsState extends State<WomenProductsScreen> {
         drawer: NavigationDrawerWidget(),
         appBar: AppBar(
           centerTitle: false,
-          title: Text("Женщины",
+          title: Text("Желаемые",
               style: TextStyle(
                   color: Color.fromRGBO(58, 67, 59, 1),
                   fontFamily: 'Merriweather-Regular')),
@@ -31,9 +30,7 @@ class _WomenProductsState extends State<WomenProductsScreen> {
             IconButton(
               icon: Icon(Icons.favorite_outline,
                   color: Color.fromRGBO(58, 67, 59, 1)),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => FavoritesScreen(),
-              )),
+              onPressed: () {},
             ),
             IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
@@ -52,25 +49,29 @@ class _WomenProductsState extends State<WomenProductsScreen> {
           mainAxisSpacing: 20,
           crossAxisCount: 2,
           children: [
-            _buildWomanProductContainer(width: productCellWidth,
+            _buildWomanProductContainer(
+                width: productCellWidth,
                 height: productCellHeight,
                 imagePath: 'assets/goods_images/product1.jpg',
                 clothProductName: 'Платье \"Love me\"',
                 clothType: 'кожа',
                 clothPrice: '10,000 T'),
-                _buildWomanProductContainer(width: productCellWidth,
+            _buildWomanProductContainer(
+                width: productCellWidth,
                 height: productCellHeight,
                 imagePath: 'assets/goods_images/product2.jpg',
                 clothProductName: 'Платье \"Justin\"',
                 clothType: 'ткань',
                 clothPrice: '17,000 T'),
-                _buildWomanProductContainer(width: productCellWidth,
+            _buildWomanProductContainer(
+                width: productCellWidth,
                 height: productCellHeight,
                 imagePath: 'assets/goods_images/product3.jpg',
                 clothProductName: 'Платье \"Elmira\"',
                 clothType: 'эластин',
                 clothPrice: '13,000 T'),
-                _buildWomanProductContainer(width: productCellWidth,
+            _buildWomanProductContainer(
+                width: productCellWidth,
                 height: productCellHeight,
                 imagePath: 'assets/goods_images/product4.jpg',
                 clothProductName: 'Платье \"Gulmira\"',
@@ -79,8 +80,6 @@ class _WomenProductsState extends State<WomenProductsScreen> {
           ],
         ),
       );
-
-  
 
   Widget _buildWomanProductContainer({
     required double width,
@@ -92,9 +91,9 @@ class _WomenProductsState extends State<WomenProductsScreen> {
   }) {
     return InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => WomenProductScreen(),
-        )),
-          child: Container(
+        builder: (context) => WomenProductScreen(),
+      )),
+      child: Container(
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -105,18 +104,18 @@ class _WomenProductsState extends State<WomenProductsScreen> {
                   children: [
                     Container(
                       color: Colors.transparent,
-                      child: Image.asset(imagePath,
-                          width: 190, fit: BoxFit.cover),
+                      child:
+                          Image.asset(imagePath, width: 190, fit: BoxFit.cover),
                     ),
                     Positioned(
                       right: 5,
                       bottom: 5,
                       child: CircleAvatar(
-                        backgroundColor: WHITE_COLOR,
+                        backgroundColor: Colors.white,
                         radius: 20,
-                                              child: IconButton(
+                        child: IconButton(
                           alignment: Alignment.center,
-                          icon: Icon(Icons.favorite_outline,
+                          icon: Icon(Icons.delete_outline,
                               size: 20, color: PRIMARY_DARK_COLOR),
                           onPressed: () => {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -130,7 +129,9 @@ class _WomenProductsState extends State<WomenProductsScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Text(clothProductName,
                   style: TextStyle(
                     color: Color.fromRGBO(58, 67, 59, 1),
