@@ -32,6 +32,7 @@ dependencies:
   badges: ^2.0.1
   async: ^2.6.1
   flutter_blurhash: ^0.6.0
+  flutter_config: ^2.0.0
 
 dev_dependencies:
   flutter_test:

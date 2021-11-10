@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart';
 import 'package:rosemary/cubit/main_cubit.dart';
 import 'package:rosemary/data/models/user.dart';
@@ -36,6 +37,9 @@ void main() async {
 
   //shop data
   late List<AskedQuestion>? askedQuestions;
+
+  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
+  await FlutterConfig.loadEnvVariables();
 
   MainDomain _mainCubit = MainDomain(
     repository: Repository(

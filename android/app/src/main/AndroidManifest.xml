@@ -4,7 +4,7 @@
         android:label="Rosemary"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyBcIY-sum4CMIclPGLBiN8WY2McA4wMTaI"/>
+               android:value="@string/GOOGLE_MAPS_API_KEY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
