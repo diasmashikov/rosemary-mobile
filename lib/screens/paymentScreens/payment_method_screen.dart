@@ -1,11 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:rosemary/data/models/user.dart';
+import 'package:rosemary/data/repository.dart';
 
-import 'package:rosemary/utils/custom_app_bar.dart';
+import 'package:rosemary/utils/widgets/custom_app_bar.dart';
 
 import '../../navigation_drawer_widget.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
+  final String? token;
+  final User? userData;
+  final Repository repository;
+
+  final int? cartOrderItemsCount;
+
+  const PaymentMethodScreen({Key? key, required this.token, required this.userData, required this.repository, required this.cartOrderItemsCount}) : super(key: key);
   @override
   _PaymentMethodScreenState createState() => _PaymentMethodScreenState();
 }
@@ -19,12 +28,23 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: NavigationDrawerWidget(),
+      drawer: NavigationDrawerWidget(token: widget.token,
+            userData: widget.userData,
+            repository: widget.repository,
+        cartOrderItemsCount: widget.cartOrderItemsCount
+            ),
       appBar: CustomAppBar(
         title: "Выбор метода оплаты",
         favoriteIcon: Icons.favorite_outline,
         shoppingCartIcon: Icons.shopping_cart_outlined,
+        cartOrderItemsCount: widget.cartOrderItemsCount,
+
         settingsIcon: null,
+          adminPanel: (widget.userData!.isAdmin != true) ?  null : Icons.admin_panel_settings_outlined,
+
+        token: widget.token,
+            userData: widget.userData,
+            repository: widget.repository
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

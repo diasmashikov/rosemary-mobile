@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rosemary">
    <application
-        android:label="rosemary"
+        android:label="Rosemary"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBcIY-sum4CMIclPGLBiN8WY2McA4wMTaI"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

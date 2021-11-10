@@ -1,12 +1,21 @@
 
 import 'package:flutter/material.dart';
+import 'package:rosemary/data/models/user.dart';
+import 'package:rosemary/data/repository.dart';
 
-import 'package:rosemary/utils/custom_app_bar.dart';
+import 'package:rosemary/utils/widgets/custom_app_bar.dart';
 import 'package:rosemary/utils/text_form_field.dart';
 
 import '../../navigation_drawer_widget.dart';
 
 class BillingAddressScreen extends StatefulWidget {
+  final String? token;
+  final User? userData;
+  final Repository repository;
+
+  final int? cartOrderItemsCount;
+
+  const BillingAddressScreen({Key? key, required this.token, required this.userData, required this.repository, required this.cartOrderItemsCount}) : super(key: key);
   @override
   _BillingAddressState createState() => _BillingAddressState();
 }
@@ -35,12 +44,23 @@ class _BillingAddressState extends State<BillingAddressScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: NavigationDrawerWidget(),
+      drawer: NavigationDrawerWidget(token: widget.token,
+            userData: widget.userData,
+            repository: widget.repository,
+        cartOrderItemsCount: widget.cartOrderItemsCount
+            ),
       appBar: CustomAppBar(
         title: "Платежный адрес",
         favoriteIcon: Icons.favorite_outline,
         shoppingCartIcon: Icons.shopping_cart_outlined,
+        cartOrderItemsCount: widget.cartOrderItemsCount,
+
         settingsIcon: null,
+          adminPanel: (widget.userData!.isAdmin != true) ?  null : Icons.admin_panel_settings_outlined,
+
+        token: widget.token,
+            userData: widget.userData,
+            repository: widget.repository
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
