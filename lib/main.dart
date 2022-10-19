@@ -35,6 +35,8 @@ void main() async {
   User? _userData;
   bool? _adminAccess;
 
+  print("Xyi");
+
   //shop data
   late List<AskedQuestion>? askedQuestions;
 
@@ -49,9 +51,9 @@ void main() async {
 
   Future<void> getLastSavedUserData() async {
     final prefs = await SharedPreferences.getInstance();
-    print("EMAIL AND PASSWORD");
-    String? email = prefs.getString("loginEmail");
-    String? password = prefs.getString("loginPassword");
+
+    String? email = "diashok@mail.com";
+    String? password = "123456789";
 
     _email = (email != null) ? email : null;
     _password = (password != null) ? password : null;
@@ -60,28 +62,6 @@ void main() async {
   Future<void> loadShopData() async {
     var orders;
     var statistics;
-
-/*
-    final futureGroup = FutureGroup();
-    futureGroup.add(_mainCubit.fetchOrderCart(
-        status: "Cart", token: _token!, user: _userData!));
-    futureGroup.add(_mainCubit.fetchAskedQuestions());
-    futureGroup.add(_mainCubit.fetchContacts());
-    futureGroup.add(_mainCubit.fetchPromotions());
-    futureGroup.add(_mainCubit.fetchMyOrders(user: _userData, token: _token));
-    futureGroup.add(_mainCubit.fetchCategories());
-    if (_userData!.isAdmin == true) {
-      tz.initializeTimeZones();
-      var almaty = tz1.getLocation("Asia/Almaty");
-      var dateAndTimeInAlmaty = tz1.TZDateTime.now(almaty);
-      futureGroup.add(_mainCubit.fetchOrders(
-          token: _token!, dateAndTime: dateAndTimeInAlmaty));
-
-      futureGroup.add(_mainCubit.fetchStatistics(token: _token));
-    }
-
-    futureGroup.close();
-    */
 
     _mainCubit
         .fetchEntryData(
@@ -156,34 +136,6 @@ void main() async {
       loadShopData();
     });
   }
-
-/*
- void setAdminAccess() {
-    if (_userData != null) {
-      if (_userData!.isAdmin == true) {
-        _adminAccess = true;
-      } else {
-        print("YOU ARE NOT ADMIN");
-      }
-    } else {
-      print("USER DATA IS NULL");
-    }
-  }
-  Future<void> setLastSavedUserData() async {
-    var _lastUserData = await getLastSavedUserData();
-    var _lastUserEmail = _lastUserData[0];
-    var _lastUserPassword = _lastUserData[1];
-
-    if (_lastUserEmail != null) {
-      _email = _lastUserEmail;
-      _password = _lastUserPassword!;
-
-      setUserData();
-    } else {
-      _token = null;
-    }
-  }
-  */
 
   void saveLoginDataForTheNextTime() async {
     final prefs = await SharedPreferences.getInstance();

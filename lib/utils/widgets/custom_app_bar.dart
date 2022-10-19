@@ -12,7 +12,6 @@ import 'package:rosemary/data/repository.dart';
 import 'package:rosemary/screens/adminScreens/AdminPanelScreen.dart';
 import 'package:rosemary/screens/singleScreens/favorites_screen.dart';
 import 'package:sizer/sizer.dart';
-
 import 'package:rosemary/screens/settingsScreens/settings_screen.dart';
 import 'package:rosemary/screens/singleScreens/login_screen.dart';
 import 'package:rosemary/screens/singleScreens/shopping_cart_screen.dart';
@@ -62,6 +61,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         ),
         centerTitle: false,
         titleSpacing: 0,
+        backgroundColor: Color.fromRGBO(247, 247, 247, 1),
         title: Text(widget.title,
             style: TextStyle(
                 fontSize: 13.5.sp,
@@ -72,9 +72,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
           _hideIconShoppingCart(),
           _hideIconSettings(),
           _hideAdminPanel(),
-          
           SizedBox(
-           width: (widget.adminPanel == null) ? 3.w : 1.w, 
+            width: (widget.adminPanel == null) ? 3.w : 1.w,
           )
         ]);
   }
@@ -82,7 +81,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget _hideIconFavorite() {
     if (widget.favoriteIcon != null) {
       return IconButton(
-         padding: EdgeInsets.only(right: APP_BAR_ICONS_PADDING_RIGHT, left: APP_BAR_ICONS_PADDING_RIGHT),
+        padding: EdgeInsets.only(
+            right: APP_BAR_ICONS_PADDING_RIGHT,
+            left: APP_BAR_ICONS_PADDING_RIGHT),
         iconSize: APP_BAR_ICONS,
         icon:
             Icon(Icons.favorite_outline, color: Color.fromRGBO(58, 67, 59, 1)),
@@ -103,15 +104,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   Widget _hideIconShoppingCart() {
-    
     if (widget.shoppingCartIcon != null) {
-      return Stack(
-        
-        alignment: Alignment.center, children: [
-          Padding(
-            padding: EdgeInsets.only(right: APP_BAR_ICONS_PADDING_RIGHT, left: APP_BAR_ICONS_PADDING_RIGHT),
-            child: InkWell(
-              onTap: () async {
+      return Stack(alignment: Alignment.center, children: [
+        Padding(
+          padding: EdgeInsets.only(
+              right: APP_BAR_ICONS_PADDING_RIGHT,
+              left: APP_BAR_ICONS_PADDING_RIGHT),
+          child: InkWell(
+            onTap: () async {
               print(SingletonOrderCount.orderCount);
               (widget.token == null)
                   ? await Navigator.of(context).push(MaterialPageRoute(
@@ -135,77 +135,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     ));
               SingletonCallbacks.refreshOrderCountCallBack();
             },
-              child: Badge(
-                 
+            child: Badge(
                 position: BadgePosition.topEnd(top: -16, end: -10),
                 elevation: 0,
-            
-            
-              badgeContent: Text(widget.cartOrderItemsCount.toString(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 2.8.w,
-                                color: Color.fromRGBO(58, 67, 59, 1),
-                                fontFamily: 'Merriweather-Regular')),
-              badgeColor: GOLD_COLOR,
-              
-              child: Icon(Icons.shopping_cart_outlined,
-              size: APP_BAR_ICONS,
-                    color: Color.fromRGBO(58, 67, 59, 1))
-            
-              ),
-            ),
+                badgeContent: Text(widget.cartOrderItemsCount.toString(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 2.8.w,
+                        color: Color.fromRGBO(58, 67, 59, 1),
+                        fontFamily: 'Merriweather-Regular')),
+                badgeColor: GOLD_COLOR,
+                child: Icon(Icons.shopping_cart_outlined,
+                    size: APP_BAR_ICONS, color: Color.fromRGBO(58, 67, 59, 1))),
           ),
-          /*
-        IconButton(
-            iconSize: APP_BAR_ICONS,
-            icon: Icon(Icons.shopping_cart_outlined,
-                color: Color.fromRGBO(58, 67, 59, 1)),
-            onPressed: () async {
-              print(SingletonOrderCount.orderCount);
-              (widget.token == null)
-                  ? await Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => BlocProvider(
-                        create: (context) =>
-                            LoginCubit(repository: widget.repository),
-                        child: LoginScreen(repository: widget.repository),
-                      ),
-                    ))
-                  : await Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => BlocProvider(
-                        create: (context) =>
-                            ShoppingCartCubit(repository: widget.repository),
-                        child: ShoppingCartScreen(
-                          token: widget.token,
-                          userData: widget.userData,
-                          repository: widget.repository,
-                          cartOrderItemsCount: widget.cartOrderItemsCount,
-                        ),
-                      ),
-                    ));
-              SingletonCallbacks.refreshOrderCountCallBack();
-            }),
-        Positioned(
-            top: 3,
-            right: 0,
-            child: (widget.cartOrderItemsCount != null)
-                ? Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 0.1.h),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: GOLD_COLOR),
-                    alignment: Alignment.center,
-                    child: Text(widget.cartOrderItemsCount.toString(),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 2.9.w,
-                            color: Color.fromRGBO(58, 67, 59, 1),
-                            fontFamily: 'Merriweather-Regular')),
-                  )
-                : Center())
-                */
-
-                
+        ),
       ]);
     } else {
       return Container();
@@ -216,7 +159,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
     if (widget.settingsIcon != null) {
       return IconButton(
         iconSize: APP_BAR_ICONS,
-         padding: EdgeInsets.only(right: APP_BAR_ICONS_PADDING_RIGHT, left: APP_BAR_ICONS_PADDING_RIGHT),
+        padding: EdgeInsets.only(
+            right: APP_BAR_ICONS_PADDING_RIGHT,
+            left: APP_BAR_ICONS_PADDING_RIGHT),
         icon: Icon(widget.settingsIcon, color: Color.fromRGBO(58, 67, 59, 1)),
         onPressed: () async {
           await Navigator.of(context).push(MaterialPageRoute(
@@ -238,7 +183,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
     if (widget.adminPanel != null) {
       return IconButton(
         iconSize: APP_BAR_ICONS,
-        padding: EdgeInsets.only(right: APP_BAR_ICONS_PADDING_RIGHT, left: APP_BAR_ICONS_PADDING_RIGHT),
+        padding: EdgeInsets.only(
+            right: APP_BAR_ICONS_PADDING_RIGHT,
+            left: APP_BAR_ICONS_PADDING_RIGHT),
         icon: Icon(widget.adminPanel, color: Color.fromRGBO(58, 67, 59, 1)),
         onPressed: () async {
           await Navigator.of(context).push(MaterialPageRoute(

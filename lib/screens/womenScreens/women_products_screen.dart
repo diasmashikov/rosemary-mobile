@@ -249,9 +249,7 @@ class _WomenProductsState extends State<WomenProductsScreen> {
                 Container(
                     padding: EdgeInsets.only(bottom: 2.h),
                     child: InkWell(
-                      onTap: () {
-                        _openFilterDialog();
-                      },
+                      onTap: () {},
                       child: Card(
                           child: Container(
                               padding: EdgeInsets.only(
@@ -501,11 +499,11 @@ class _WomenProductsState extends State<WomenProductsScreen> {
                           });
                         },
                         child: Icon(Icons.favorite_outline,
-                              size: 5.5.w, color: PRIMARY_DARK_COLOR),
+                            size: 5.5.w, color: PRIMARY_DARK_COLOR),
                       ),
                     ],
                   ),
-                 SizedBox(height: 1.h),
+                  SizedBox(height: 1.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
@@ -1397,249 +1395,249 @@ class _WomenProductsState extends State<WomenProductsScreen> {
       }
     }
   }
-
-  void _openFilterDialog() async {
-    counter = 0;
-    var productsFilterLists = [colorsList, materialList, countryList];
-    if (productsFilterOptionsList!.isEmpty)
-      productsFilterLists.forEach((list) {
-        list.forEach((listElement) {
-          productsFilterOptionsList!.add(listElement);
-        });
-      });
-
-    print(productsFilterOptionsList);
-
-    await FilterListDialog.display<String>(context,
-        listData: productsFilterOptionsList!,
-        selectedListData: productsFilterOptionsSelectedList,
-        height: 480,
-        hideCloseIcon: true,
-        hideSelectedTextCount: true,
-        headlineText: "Выберите цвет",
-        applyButtonText: "Применить",
-        resetButtonText: "Сброс",
-        allButtonText: "Все",
-        selectedItemsText: "Выбранные фильтры",
-        closeIconColor: PRIMARY_DARK_COLOR,
-        headerTextColor: PRIMARY_DARK_COLOR,
-        selectedTextBackgroundColor: PRIMARY_DARK_COLOR,
-        applyButonTextBackgroundColor: PRIMARY_DARK_COLOR,
-        applyButtonTextStyle:
-            TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
-        selectedChipTextStyle:
-            TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
-        unselectedChipTextStyle:
-            TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
-        controlButtonTextStyle:
-            TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
-        headerTextStyle:
-            TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
-        searchFieldTextStyle: TextStyle(
-            fontFamily: "SolomonSans-SemiBold", fontSize: 16, height: 1.5),
-        //backgroundColor: PRIMARY_DARK_COLOR,
-        //searchFieldBackgroundColor: PRIMARY_DARK_COLOR,
-
-        searchFieldHintText: "Искать цвет здесь", choiceChipLabel: (item) {
-      return item;
-    }, validateSelectedItem: (list, val) {
-      return list!.contains(val);
-    }, onItemSearch: (list, text) {
-      if (list!.any(
-          (element) => element.toLowerCase().contains(text.toLowerCase()))) {
-        return list
-            .where(
-                (element) => element.toLowerCase().contains(text.toLowerCase()))
-            .toList();
-      } else {
-        return [];
-      }
-    }, onApplyButtonClick: (list) {
-      _productsOnFilter = [];
-      _controllerProducts.text = "";
-      if (list != null) {
-        setState(() {
-          // filtering for everything
-
-          var hashmapa = {
-            "Белый": 0,
-            "Черный": 1,
-            "Красный": 2,
-            "Кожа": 3,
-            "Ткань": 4,
-            "США": 5,
-            "ЮАР": 6,
-            "Турция": 7
-          };
-
-          var hashMapaFilteringCategories = {
-            "Белый": "Сolor",
-            "Черный": "Color",
-            "Красный": "Color",
-            "Кожа": "Material",
-            "Ткань": "Material",
-            "США": "Country",
-            "ЮАР": "Country",
-            "Турция": "Country"
-          };
-
-          var listColors = [];
-          var listMaterials = [];
-          var listCountries = [];
-
-          productsFilterOptionsSelectedList = List.from(list);
-
-          for (String filteringOption in productsFilterOptionsSelectedList!) {
-            if (hashmapa[filteringOption]! <= colorsEndPoint) {
-              listColors.add(hashMapaFilteringCategories[filteringOption]);
-            } else if (hashmapa[filteringOption]! > colorsEndPoint &&
-                hashmapa[filteringOption]! <= materialEndPoint) {
-              listMaterials.add(hashMapaFilteringCategories[filteringOption]);
-            } else if (hashmapa[filteringOption]! > materialEndPoint &&
-                hashmapa[filteringOption]! <= countryEndPoint) {
-              listMaterials.add(hashMapaFilteringCategories[filteringOption]);
-            }
-          }
-          if (productsFilterOptionsSelectedList!.isNotEmpty) {
-            _products
-                .where((product) {
-                  List<bool> acceptedCombos = [];
-                  for (String filteringOption
-                      in productsFilterOptionsSelectedList!) {
-                    if (hashmapa[filteringOption]! <= colorsEndPoint) {
-                      containsColor = product.color.contains(filteringOption);
-
-                      if (containsColor) {
-                        acceptedCombos.add(containsColor);
-                      } else
-                        acceptedCombos.add(false);
-                    } else if (hashmapa[filteringOption]! > colorsEndPoint &&
-                        hashmapa[filteringOption]! <= materialEndPoint) {
-                      containsMaterial =
-                          product.material.contains(filteringOption);
-
-                      if (containsMaterial) {
-                        acceptedCombos.add(containsMaterial);
-                      } else
-                        acceptedCombos.add(false);
-                    } else if (hashmapa[filteringOption]! > materialEndPoint &&
-                        hashmapa[filteringOption]! <= countryEndPoint) {
-                      containsCountry =
-                          product.countryProducer.contains(filteringOption);
-
-                      if (containsCountry) {
-                        acceptedCombos.add(containsCountry);
-                      } else
-                        acceptedCombos.add(false);
-                    } else {}
-                  }
-
-                  print(listColors.length.toString() + " LENGTH LISTCOLORS");
-                  print(listMaterials.length.toString() +
-                      " LENGTH LISTMATERIALS");
-                  print(listCountries.length.toString() +
-                      " LENGTH LISTCOUNTRIES");
-
-                  print(acceptedCombos);
-
-                  List<bool> trueList = [];
-                  List<bool> falseList = [];
-
-                  for (int comboIndex = 0;
-                      comboIndex != acceptedCombos.length;
-                      comboIndex++) {
-                    print(" BLYAT");
-                    if (acceptedCombos[comboIndex] == true) {
-                      trueList.add(true);
-                    } else {
-                      falseList.add(false);
-                    }
-                  }
-
-                  print(trueList.toString() +
-                      " TRUE LISTI " +
-                      trueList.length.toString() +
-                      " DLINA ");
-                  print(falseList.toString() +
-                      " FALSE LISTI " +
-                      falseList.length.toString() +
-                      " DLINA ");
-
-                  if (trueList.isEmpty) {
-                    return false;
-                  } else {
-                    if (listColors.length == acceptedCombos.length ||
-                        listMaterials.length == acceptedCombos.length ||
-                        listCountries.length == acceptedCombos.length) {
-                      return true;
-                    }
-                    if (trueList.length >= falseList.length) {
-                      return true;
-                    } else {
-                      return false;
-                    }
-                  }
-
-                  // trueList.length >= falseList.length is good when there are 4 filtering categories
-                  // and they are 2 different types of them by 2
-                })
-                .toList()
-                .forEach((element) {
-                  _productsOnFilter!.add(element);
-                });
-            /*
-            for (String filteringOption in productsFilterOptionsSelectedList!) {
-              print(hashmapa[filteringOption]!);
-              print(materialEndPoint.toString() + " FKSd");
-              print(colorsEndPoint.toString() + " FFFFFKSd");
-
-              // finding all by each короче вводишь в фильтр красный и зеленый - он находит все красное и зеленое
-              // ставишь кожу и красное - он находит все кожанное и красное, но не красно-кожанное
-
-/*
-              if (hashmapa[filteringOption]! <= colorsEndPoint) {
-                print("COLOR");
-                _products
-                    .where((product) {
-                      containsColor = product.color.contains(filteringOption);
-                      if (containsColor) {
-                        //realIndexFromSearch = indexCounter;
-                        return containsColor;
-                      } else
-                        return false;
-                    })
-                    .toList()
-                    .forEach((element) {
-                      _productsOnFilter!.add(element);
-                    });
-              } else if (hashmapa[filteringOption]! > colorsEndPoint &&
-                  hashmapa[filteringOption]! <= materialEndPoint) {
-                print("MATERIAL");
-                _products
-                    .where((product) {
-                      containsMaterial =
-                          product.material.contains(filteringOption);
-                      if (containsMaterial) {
-                        //realIndexFromSearch = indexCounter;
-                        return containsMaterial;
-                      } else
-                        return false;
-                    })
-                    .toList()
-                    .forEach((element) {
-                      _productsOnFilter!.add(element);
-                    });
-              }
-              */
-
-              print(_productsOnFilter.toString() + " XNJ");
-            }
-            */
-          } else {}
-          // filtering for everything
-        });
-      }
-      Navigator.pop(context);
-    });
-  }
 }
+
+// void _openFilterDialog() async {
+//     counter = 0;
+//     var productsFilterLists = [colorsList, materialList, countryList];
+//     if (productsFilterOptionsList!.isEmpty)
+//       productsFilterLists.forEach((list) {
+//         list.forEach((listElement) {
+//           productsFilterOptionsList!.add(listElement);
+//         });
+//       });
+
+//     print(productsFilterOptionsList);
+
+//     await FilterListDialog.display<String>(context,
+//         listData: productsFilterOptionsList!,
+//         selectedListData: productsFilterOptionsSelectedList,
+//         height: 480,
+//         hideCloseIcon: true,
+//         hideSelectedTextCount: true,
+//         headlineText: "Выберите цвет",
+//         applyButtonText: "Применить",
+//         resetButtonText: "Сброс",
+//         allButtonText: "Все",
+//         selectedItemsText: "Выбранные фильтры",
+//         closeIconColor: PRIMARY_DARK_COLOR,
+//         headerTextColor: PRIMARY_DARK_COLOR,
+//         selectedTextBackgroundColor: PRIMARY_DARK_COLOR,
+//         applyButonTextBackgroundColor: PRIMARY_DARK_COLOR,
+//         applyButtonTextStyle:
+//             TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
+//         selectedChipTextStyle:
+//             TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
+//         unselectedChipTextStyle:
+//             TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
+//         controlButtonTextStyle:
+//             TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
+//         headerTextStyle:
+//             TextStyle(fontFamily: "SolomonSans-SemiBold", fontSize: 16),
+//         searchFieldTextStyle: TextStyle(
+//             fontFamily: "SolomonSans-SemiBold", fontSize: 16, height: 1.5),
+//         //backgroundColor: PRIMARY_DARK_COLOR,
+//         //searchFieldBackgroundColor: PRIMARY_DARK_COLOR,
+
+//         searchFieldHintText: "Искать цвет здесь", choiceChipLabel: (item) {
+//       return item;
+//     }, validateSelectedItem: (list, val) {
+//       return list!.contains(val);
+//     }, onItemSearch: (list, text) {
+//       if (list!.any(
+//           (element) => element.toLowerCase().contains(text.toLowerCase()))) {
+//         return list
+//             .where(
+//                 (element) => element.toLowerCase().contains(text.toLowerCase()))
+//             .toList();
+//       } else {
+//         return [];
+//       }
+//     }, onApplyButtonClick: (list) {
+//       _productsOnFilter = [];
+//       _controllerProducts.text = "";
+//       if (list != null) {
+//         setState(() {
+//           // filtering for everything
+
+//           var hashmapa = {
+//             "Белый": 0,
+//             "Черный": 1,
+//             "Красный": 2,
+//             "Кожа": 3,
+//             "Ткань": 4,
+//             "США": 5,
+//             "ЮАР": 6,
+//             "Турция": 7
+//           };
+
+//           var hashMapaFilteringCategories = {
+//             "Белый": "Сolor",
+//             "Черный": "Color",
+//             "Красный": "Color",
+//             "Кожа": "Material",
+//             "Ткань": "Material",
+//             "США": "Country",
+//             "ЮАР": "Country",
+//             "Турция": "Country"
+//           };
+
+//           var listColors = [];
+//           var listMaterials = [];
+//           var listCountries = [];
+
+//           productsFilterOptionsSelectedList = List.from(list);
+
+//           for (String filteringOption in productsFilterOptionsSelectedList!) {
+//             if (hashmapa[filteringOption]! <= colorsEndPoint) {
+//               listColors.add(hashMapaFilteringCategories[filteringOption]);
+//             } else if (hashmapa[filteringOption]! > colorsEndPoint &&
+//                 hashmapa[filteringOption]! <= materialEndPoint) {
+//               listMaterials.add(hashMapaFilteringCategories[filteringOption]);
+//             } else if (hashmapa[filteringOption]! > materialEndPoint &&
+//                 hashmapa[filteringOption]! <= countryEndPoint) {
+//               listMaterials.add(hashMapaFilteringCategories[filteringOption]);
+//             }
+//           }
+//           if (productsFilterOptionsSelectedList!.isNotEmpty) {
+//             _products
+//                 .where((product) {
+//                   List<bool> acceptedCombos = [];
+//                   for (String filteringOption
+//                       in productsFilterOptionsSelectedList!) {
+//                     if (hashmapa[filteringOption]! <= colorsEndPoint) {
+//                       containsColor = product.color.contains(filteringOption);
+
+//                       if (containsColor) {
+//                         acceptedCombos.add(containsColor);
+//                       } else
+//                         acceptedCombos.add(false);
+//                     } else if (hashmapa[filteringOption]! > colorsEndPoint &&
+//                         hashmapa[filteringOption]! <= materialEndPoint) {
+//                       containsMaterial =
+//                           product.material.contains(filteringOption);
+
+//                       if (containsMaterial) {
+//                         acceptedCombos.add(containsMaterial);
+//                       } else
+//                         acceptedCombos.add(false);
+//                     } else if (hashmapa[filteringOption]! > materialEndPoint &&
+//                         hashmapa[filteringOption]! <= countryEndPoint) {
+//                       containsCountry =
+//                           product.countryProducer.contains(filteringOption);
+
+//                       if (containsCountry) {
+//                         acceptedCombos.add(containsCountry);
+//                       } else
+//                         acceptedCombos.add(false);
+//                     } else {}
+//                   }
+
+//                   print(listColors.length.toString() + " LENGTH LISTCOLORS");
+//                   print(listMaterials.length.toString() +
+//                       " LENGTH LISTMATERIALS");
+//                   print(listCountries.length.toString() +
+//                       " LENGTH LISTCOUNTRIES");
+
+//                   print(acceptedCombos);
+
+//                   List<bool> trueList = [];
+//                   List<bool> falseList = [];
+
+//                   for (int comboIndex = 0;
+//                       comboIndex != acceptedCombos.length;
+//                       comboIndex++) {
+//                     print(" BLYAT");
+//                     if (acceptedCombos[comboIndex] == true) {
+//                       trueList.add(true);
+//                     } else {
+//                       falseList.add(false);
+//                     }
+//                   }
+
+//                   print(trueList.toString() +
+//                       " TRUE LISTI " +
+//                       trueList.length.toString() +
+//                       " DLINA ");
+//                   print(falseList.toString() +
+//                       " FALSE LISTI " +
+//                       falseList.length.toString() +
+//                       " DLINA ");
+
+//                   if (trueList.isEmpty) {
+//                     return false;
+//                   } else {
+//                     if (listColors.length == acceptedCombos.length ||
+//                         listMaterials.length == acceptedCombos.length ||
+//                         listCountries.length == acceptedCombos.length) {
+//                       return true;
+//                     }
+//                     if (trueList.length >= falseList.length) {
+//                       return true;
+//                     } else {
+//                       return false;
+//                     }
+//                   }
+
+//                   // trueList.length >= falseList.length is good when there are 4 filtering categories
+//                   // and they are 2 different types of them by 2
+//                 })
+//                 .toList()
+//                 .forEach((element) {
+//                   _productsOnFilter!.add(element);
+//                 });
+//             /*
+//             for (String filteringOption in productsFilterOptionsSelectedList!) {
+//               print(hashmapa[filteringOption]!);
+//               print(materialEndPoint.toString() + " FKSd");
+//               print(colorsEndPoint.toString() + " FFFFFKSd");
+
+//               // finding all by each короче вводишь в фильтр красный и зеленый - он находит все красное и зеленое
+//               // ставишь кожу и красное - он находит все кожанное и красное, но не красно-кожанное
+
+// /*
+//               if (hashmapa[filteringOption]! <= colorsEndPoint) {
+//                 print("COLOR");
+//                 _products
+//                     .where((product) {
+//                       containsColor = product.color.contains(filteringOption);
+//                       if (containsColor) {
+//                         //realIndexFromSearch = indexCounter;
+//                         return containsColor;
+//                       } else
+//                         return false;
+//                     })
+//                     .toList()
+//                     .forEach((element) {
+//                       _productsOnFilter!.add(element);
+//                     });
+//               } else if (hashmapa[filteringOption]! > colorsEndPoint &&
+//                   hashmapa[filteringOption]! <= materialEndPoint) {
+//                 print("MATERIAL");
+//                 _products
+//                     .where((product) {
+//                       containsMaterial =
+//                           product.material.contains(filteringOption);
+//                       if (containsMaterial) {
+//                         //realIndexFromSearch = indexCounter;
+//                         return containsMaterial;
+//                       } else
+//                         return false;
+//                     })
+//                     .toList()
+//                     .forEach((element) {
+//                       _productsOnFilter!.add(element);
+//                     });
+//               }
+//               */
+
+//               print(_productsOnFilter.toString() + " XNJ");
+//             }
+//             */
+//           } else {}
+//           // filtering for everything
+//         });
+//       }
+//       Navigator.pop(context);
+//     });
+//   }
